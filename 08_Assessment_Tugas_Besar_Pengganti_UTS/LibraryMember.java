@@ -3,9 +3,7 @@ import java.util.Date;
 public class LibraryMember {
     private infoPribadi infoPribadi;
     private statusAnggota statusAnggota;
-    private int poinLoyalitas;
-    private String kodeReferal;
-    private boolean langgananBuletin;
+
 
     public LibraryMember(String namaLengkap, String alamat, String nomorTelepon, String email, String jenisKelamin,
             String kodeAnggota, Date tanggalGabung, boolean statusAktif,
@@ -18,9 +16,7 @@ public class LibraryMember {
                 tingkatKeanggotaan, jumlahBukuDipinjam,
                 jumlahTerlambat, jumlahDenda, poinLoyalitas,
                 kodeReferal, langgananBuletin);
-        this.poinLoyalitas = poinLoyalitas;
-        this.kodeReferal = kodeReferal;
-        this.langgananBuletin = langgananBuletin;
+
     }
 
     public void cetakProfilLengkap() {
@@ -37,9 +33,9 @@ public class LibraryMember {
         System.out.println("Buku Dipinjam: " +  statusAnggota.getJumlahBukuDipinjam());
         System.out.println("Terlambat    : " + statusAnggota.getJumlahTerlambat());
         System.out.println("Denda        : Rp " + statusAnggota.getJumlahDenda());
-        System.out.println("Poin         : " + poinLoyalitas);
-        System.out.println("Kode Referal : " + kodeReferal);
-        System.out.println("Langganan Buletin: " + langgananBuletin);
+        System.out.println("Poin         : " + statusAnggota.getPoinLoyalitas());
+        System.out.println("Kode Referal : " + statusAnggota.getKodeReferal());
+        System.out.println("Langganan Buletin: " + statusAnggota.isLanggananBuletin());
         System.out.println("Skor Risiko : " + hitungSkorRisiko());
         System.out.println("Layak Upgrade?: " + periksaKelayakanUpgrade());
         System.out.println("===========================");
@@ -51,12 +47,24 @@ public class LibraryMember {
     public void gunakanKodeReferal(String kode) {
     }
 
+
+
+        // Lebih panjang, kenapa tidak langsung di return
+    // public boolean periksaKelayakanUpgrade() {
+    //     if (statusAnggota.getTingkatKeanggotaan().equals("DASAR") && poinLoyalitas > 100) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
+    // disini kita menghapus if dan return yang tidak perlu, jadi langsung menyingkatnya dengan langsung balikan hasilnya
     public boolean periksaKelayakanUpgrade() {
-        if (statusAnggota.getTingkatKeanggotaan().equals("DASAR") && poinLoyalitas > 100) {
-            return true;
-        }
-        return false;
+        return statusAnggota.getTingkatKeanggotaan().equalsIgnoreCase("DASAR") && statusAnggota.getPoinLoyalitas() > 100;
     }
+
+
+
+
 
     public double hitungSkorRisiko() {
         double skor = 0;
@@ -73,18 +81,18 @@ public class LibraryMember {
 
     
     public String getKodeReferal() {
-        return kodeReferal;
+        return statusAnggota.getKodeReferal();
     }
 
     public void setKodeReferal(String k) {
-        kodeReferal = k;
-    }
+        statusAnggota.setKodeReferal(k);
+    }    
 
     public boolean getLanggananBuletin() {
-        return langgananBuletin;
+        return statusAnggota.isLanggananBuletin();
     }
 
     public void setLanggananBuletin(boolean l) {
-        langgananBuletin = l;
+        statusAnggota.setLanggananBuletin(l);
     }
 }

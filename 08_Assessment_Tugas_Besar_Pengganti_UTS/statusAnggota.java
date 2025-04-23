@@ -60,6 +60,15 @@ public class statusAnggota {
     public boolean isLanggananBuletin() {
         return langgananBuletin;
     }
+
+    public void setKodeReferal(String kodeReferal) {
+        this.kodeReferal = kodeReferal;
+    }
+    
+    public void setLanggananBuletin(boolean langgananBuletin) {
+        this.langgananBuletin = langgananBuletin;
+    }
+    
     public void setKodeAnggota(String kodeAnggota) {
         this.kodeAnggota = kodeAnggota;
     }
